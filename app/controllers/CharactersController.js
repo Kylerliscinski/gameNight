@@ -20,9 +20,9 @@ export class CharactersController {
     let buttonHTML = ''
     AppState.characters.forEach(button => buttonHTML += `
     <div>
-    <button class="border border-dark" onclick="app.CharactersController.removePointsFromCharacter('${button.score}')"> -1 </button> 
+    <button class="border border-dark rounded text-dark" onclick="app.CharactersController.removePointsFromCharacter('${button.name}')"> -1 </button> 
     <span> ${button.score} </span> 
-    <button class="border border-dark" onclick="app.CharactersController.addPointsToCharacter('${button.score}')"> +1 </button> 
+    <button class="border border-dark rounded text-dark" onclick="app.CharactersController.addPointsToCharacter('${button.name}')"> +1 </button> 
     </div>`)
     let buttonElem = document.getElementById('button')
     buttonElem.innerHTML = buttonHTML
