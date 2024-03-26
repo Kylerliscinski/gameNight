@@ -1,5 +1,7 @@
 import { AppState } from "../AppState.js";
 import { charactersService } from "../services/CharacterService.js";
+import { getFormData } from "../utils/FormHandler.js";
+
 
 
 
@@ -11,25 +13,30 @@ export class CharactersController {
 
   drawCharacters() {
     let characterHTML = ''
-    AppState.characters.forEach(character => characterHTML += `<div class="border border-dark"> ${character.name} </div>`)
+    AppState.characters.forEach(character => characterHTML += character.playerTemplate)
     let characterElem = document.getElementById('character-name')
     characterElem.innerHTML = characterHTML
   }
 
   drawButtons() {
-    let buttonHTML = ''
-    AppState.characters.forEach(button => buttonHTML += `
-    <div>
-    <button class="border border-dark rounded text-dark" onclick="app.CharactersController.removePointsFromCharacter('${button.name}')"> -1 </button> 
-    <span> ${button.score} </span> 
-    <button class="border border-dark rounded text-dark" onclick="app.CharactersController.addPointsToCharacter('${button.name}')"> +1 </button> 
-    </div>`)
+    const character = AppState.characters
+    let characterHTML = ''
+    character.forEach(character => characterHTML += character.buttonTemplate)
     let buttonElem = document.getElementById('button')
-    buttonElem.innerHTML = buttonHTML
+    buttonElem.innerHTML = characterHTML
   }
 
-  addPlayer() {
+  createCharacter() {
+    event.preventDefault()
+    let characterData = getFormData(event.target)
+    charactersService.createCharacter(characterData)
+    event.target.reset()
+    this.drawCharacters()
+  }
 
+  deleteCharacter() {
+    charactersService.deleteCharacter(characterId)
+    this.drawCharacters()
   }
 
   removePointsFromCharacter(characterName) {
