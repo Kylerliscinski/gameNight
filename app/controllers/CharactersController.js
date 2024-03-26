@@ -28,6 +28,10 @@ export class CharactersController {
     buttonElem.innerHTML = buttonHTML
   }
 
+  addPlayer() {
+
+  }
+
   removePointsFromCharacter(characterName) {
     charactersService.removePointsFromCharacter(characterName)
     this.drawCharacters()
