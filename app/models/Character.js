@@ -10,15 +10,25 @@ export class Character {
 
 
   get playerTemplate() {
-    return `<div class="border border-dark"> ${this.name} </div> <button onclick="app.CharactersController.deleteCharacter('${this.id}')" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>`
+    return `
+    <div class="row p-1">
+      <div class="col-11 border border-dark rounded"> ${this.name}</div>
+      <div class="col-1">
+        <button onclick="app.CharactersController.deleteCharacter('${this.id}')" class="btn btn-danger"><i class="mdi mdi-delete"></i></button> 
+      </div>
+    </div>
+    `
   }
   get buttonTemplate() {
     return `
+    <div class="row p-2">
     <div>
-      <button class="border border-dark rounded text-dark" onclick="app.CharactersController.removePointsFromCharacter('${this.name}')"> -1 <button> 
+      <button class="border border-dark rounded text-dark" onclick="app.CharactersController.removePointsFromCharacter('${this.name}')"> -1 </button> 
       <span> ${this.score} </span> 
       <button class="border border-dark rounded text-dark" onclick="app.CharactersController.addPointsToCharacter('${this.name}')"> +1 </button> 
-    </div>`
+    </div>
+    </div>
+    `
   }
 
   pointsIncrease() {
